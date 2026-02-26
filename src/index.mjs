@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 import { generatePersonas } from './llm.mjs';
-import { getLatestPersonaSet, readBoardPolicy, writeArtifact } from './board.mjs';
 import { validateInput } from './validate.mjs';
+import { getLatestPersonaSet, readBoardPolicy, writeArtifact } from 'consensus-guard-core/src/index.mjs';
 
 const MAX_PERSONAS = 9;
 
@@ -59,7 +59,7 @@ export async function handler(input, opts = {}) {
       }
     };
 
-    const write = await writeArtifact(board_id, { type: 'persona_set', payload }, statePath);
+    const write = await writeArtifact(board_id, 'persona_set', payload, statePath);
     return {
       board_id,
       persona_set_id,

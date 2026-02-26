@@ -46,3 +46,7 @@ No panel, no real consensus.
 - **State substrate**: consensus-tools local/global board artifacts
 - **Primary output**: `persona_set` artifact
 - **Primary benefit**: durable evaluator diversity for decision reliability
+
+## Tool-call boundary
+
+To avoid orchestration drift, this skill routes board operations through the consensus-interact contract surface (directly or via guard-core wrappers). This preserves a single governance interaction model while allowing domain-specific decision logic.
