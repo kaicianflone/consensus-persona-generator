@@ -1,42 +1,49 @@
 ---
 name: consensus-persona-generator
-description: Open-source Consensus.Tools skill for governed AI decisions with board-native artifacts, strict JSON contracts, and deterministic policy behavior.
+description: Generate and persist reusable persona panels (persona_set artifacts) for consensus decision workflows. This skill initializes lightweight multi-agent disagreement with weighted reputations so downstream guards can make auditable, policy-governed decisions.
 homepage: https://github.com/kaicianflone/consensus-persona-generator
 source: https://github.com/kaicianflone/consensus-persona-generator
 ---
 
 # consensus-persona-generator
 
-This skill is part of the Consensus.Tools ecosystem and is designed for production-grade agent governance.
+`consensus-persona-generator` is the entrypoint for evaluator diversity in the Consensus.Tools ecosystem.
 
-## Why this skill exists
+## What this skill does
 
-Most agent systems fail because a single model decides and executes without explicit arbitration. This skill addresses that by applying consensus-style controls:
+- creates N distinct decision personas (role, bias, risk posture, voting style)
+- assigns initial reputation spread for weighted arbitration
+- persists a versioned `persona_set` artifact to board state
+- reuses compatible persona sets when possible to reduce churn
 
-- structured multi-perspective evaluation
-- hard-block safety checks
-- deterministic aggregation and replayable outputs
-- board-native artifact persistence for auditing
+## Why this matters
 
-## Core capabilities
+Most agent pipelines fail because one model self-approves its own output. This skill injects structured disagreement first, so later guards operate over explicit multi-perspective review.
 
-- strict input/output JSON contracts for pipeline integration
-- deterministic policy evaluation where possible
-- idempotent retry behavior to avoid duplicate side effects
-- versioned artifacts written to board ledger history
+## Ecosystem role
 
-## Stack assumptions
+Stack position:
 
-- built to compose with consensus-interact workflows
-- uses consensus-tools board/job/submission primitives
-- designed to integrate with persona-generator persona_set artifacts
+`consensus-tools -> consensus-interact pattern -> consensus-persona-generator -> domain guards`
+
+- **consensus-tools**: board/job/submission ledger substrate
+- **consensus-interact**: board-native orchestration contract
+- **persona-generator**: lightweight multi-agent initialization layer
+
+## Inputs / outputs (automation-friendly)
+
+- strict JSON input contract (`board_id`, `task_context`, `n_personas`, etc.)
+- strict JSON output with `persona_set_id`, `personas[]`, and board write refs
+- deterministic/replayable behavior where feasible
+
+## Typical use cases
+
+- bootstrap evaluators for email/publish/support/merge/action guards
+- regenerate persona cohorts by domain or risk profile
+- establish reusable governance personas for long-running automation
 
 ## Quick start
 
-Use the repo examples and run script to execute locally.
-
-## Expected outcomes
-
-- a decision/result artifact persisted to board state
-- optional updated persona_set artifact for adaptive governance
-- machine-parseable output suitable for automation systems
+```bash
+node --import tsx run.js --input ./examples/persona-input.json
+```
