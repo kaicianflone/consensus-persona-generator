@@ -74,3 +74,7 @@ export async function handler(input, opts = {}) {
     return err(board_id || '', 'PERSONA_GENERATOR_FAILED', e.message || 'unknown error', { statePath });
   }
 }
+
+export async function invoke(input, opts = {}) {
+  return handler(input, opts);
+}
