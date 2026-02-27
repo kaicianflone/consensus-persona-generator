@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 import { generatePersonas } from './llm.mjs';
 import { validateInput } from './validate.mjs';
-import { getLatestPersonaSet, readBoardPolicy, writeArtifact } from 'consensus-guard-core/src/index.mjs';
+import { getLatestPersonaSet, readBoardPolicy, writeArtifact, resolveStatePath } from 'consensus-guard-core/src/index.mjs';
 
 const MAX_PERSONAS = 9;
 
@@ -19,7 +19,7 @@ function err(board_id, code, message, details = {}) {
 
 export async function handler(input, opts = {}) {
   const board_id = input?.board_id;
-  const statePath = opts.statePath || process.env.CONSENSUS_STATE_FILE || './.consensus/board-state.json';
+  const statePath = resolveStatePath(opts);
 
   try {
     const validationError = validateInput(input);
