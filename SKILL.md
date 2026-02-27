@@ -3,6 +3,8 @@ name: consensus-persona-generator
 description: Generate and persist reusable persona panels (persona_set artifacts) for consensus decision workflows. This skill initializes lightweight multi-agent disagreement with weighted reputations so downstream guards can make auditable, policy-governed decisions.
 homepage: https://github.com/kaicianflone/consensus-persona-generator
 source: https://github.com/kaicianflone/consensus-persona-generator
+metadata:
+  {"openclaw": {"requires": {"bins": ["node", "npm", "tsx"]}}}
 ---
 
 # consensus-persona-generator
