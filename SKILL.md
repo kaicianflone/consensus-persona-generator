@@ -4,7 +4,7 @@ description: Generate and persist reusable persona panels (persona_set artifacts
 homepage: https://github.com/kaicianflone/consensus-persona-generator
 source: https://github.com/kaicianflone/consensus-persona-generator
 metadata:
-  {"openclaw": {"requires": {"bins": ["node", "tsx"]}}}
+  {"openclaw": {"requires": {"bins": ["node", "tsx"], "env": ["OPENAI_API_KEY"]}}}
 ---
 
 # consensus-persona-generator
@@ -50,7 +50,7 @@ Stack position:
 - runtime binaries: `node`, `tsx`
 - network calls: none in the guard decision path itself
 - conditional network behavior: if a run needs persona generation and your persona-generator backend uses an external LLM, that backend may perform outbound API calls
-- credentials: `OPENAI_API_KEY` (or equivalent provider key) may be required **only** for persona generation in LLM-backed setups; if `persona_set_id` is provided, guards can run without LLM credentials
+- credentials: `OPENAI_API_KEY` (or equivalent provider key) may be required **only** for persona generation in LLM-backed setups; persona generation can run with local/non-network backends or provider-backed APIs depending on your llm.mjs configuration
 - filesystem writes: board/state artifacts under the configured consensus state path
 
 ## Dependency trust model
