@@ -2,7 +2,7 @@
 
 Generate reusable persona sets for consensus-based decision workflows.
 
-`consensus-persona-generator` creates and persists `persona_set` artifacts that guard packages use for weighted multi-perspective voting.
+`consensus-persona-generator` creates and persists `persona_set` artifacts that guard packages use for weighted multi-perspective voting. Ongoing reputation mutation is owned by `consensus-persona-engine`.
 
 ## Why this package exists
 
@@ -18,7 +18,7 @@ High-quality governance needs diverse perspectives (security, reliability, ops, 
 ## Typical output
 
 - `persona_set_id`
-- `personas[]` with initial reputations
+- `personas[]` with initial reputation baselines (later updated by `consensus-persona-engine`)
 - board write reference for audit trail
 
 ## Quick start
