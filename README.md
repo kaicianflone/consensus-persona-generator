@@ -1,19 +1,25 @@
 # consensus-persona-generator
 
-Generate reusable decision personas for Consensus guard workflows.
+Generate reusable persona sets for consensus-based decision workflows.
 
-`consensus-persona-generator` creates and persists `persona_set` artifacts used by guard skills for weighted, multi-perspective evaluations.
+`consensus-persona-generator` creates and persists `persona_set` artifacts that guard packages use for weighted multi-perspective voting.
 
-## Why it exists
+## Why this package exists
 
-Good guard decisions need diverse viewpoints (security, reliability, operations, user impact). This tool makes those viewpoints explicit, reusable, and auditable.
+High-quality governance needs diverse perspectives (security, reliability, ops, user impact). This package makes those perspectives explicit and reusable instead of implicit and ad hoc.
 
 ## Core capabilities
 
 - strict schema validation
-- deterministic persona generation path (default for reproducibility)
-- board-native `persona_set` artifact persistence
-- indexed lookups for latest and by-id access
+- deterministic generation path (reproducible baseline)
+- board-native artifact writes (`persona_set`)
+- indexed retrieval helpers for latest/by-id persona sets
+
+## Typical output
+
+- `persona_set_id`
+- `personas[]` with initial reputations
+- board write reference for audit trail
 
 ## Quick start
 
@@ -22,18 +28,13 @@ npm i
 node --import tsx run.js --input ./examples/persona-input.json
 ```
 
-## Typical output
-
-- `persona_set_id`
-- `personas[]` with weighted reputations
-- board write reference for traceability
-
 ## Test
 
 ```bash
 npm test
 ```
 
-## Continuous improvement
+## Related docs
 
-See `AI-SELF-IMPROVEMENT.md` for iteration and persona quality tuning.
+- `SKILL.md`
+- `AI-SELF-IMPROVEMENT.md`
