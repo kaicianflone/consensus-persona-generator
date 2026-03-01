@@ -1,37 +1,39 @@
 # consensus-persona-generator
 
-Generate and persist reusable `persona_set` artifacts on a consensus-tools local JSON board.
+Generate reusable decision personas for Consensus guard workflows.
 
-## 60-second quickstart
+`consensus-persona-generator` creates and persists `persona_set` artifacts used by guard skills for weighted, multi-perspective evaluations.
+
+## Why it exists
+
+Good guard decisions need diverse viewpoints (security, reliability, operations, user impact). This tool makes those viewpoints explicit, reusable, and auditable.
+
+## Core capabilities
+
+- strict schema validation
+- deterministic persona generation path (default for reproducibility)
+- board-native `persona_set` artifact persistence
+- indexed lookups for latest and by-id access
+
+## Quick start
 
 ```bash
-cd repos/persona-generator
 npm i
 node --import tsx run.js --input ./examples/persona-input.json
 ```
 
-Output JSON is written to `./out` and printed as a summary.
+## Typical output
 
-## Input contract
-
-See `examples/persona-input.json`.
-
-## Output contract
-
-Strict JSON object:
-- `board_id`
 - `persona_set_id`
-- `created_at`
-- `personas[]`
-- `board_write`
+- `personas[]` with weighted reputations
+- board write reference for traceability
 
-Error output:
-- `board_id`
-- `error { code, message, details }`
+## Test
 
-## Notes
+```bash
+npm test
+```
 
-- Board persistence is job/submission-based (`artifact:persona_set`) over the consensus-tools local JSON state.
-- Deterministic generation path is used by default for demoability.
-- Strict input schema validation is enforced (unknown fields are rejected).
-- Artifact indexing helpers are included (in-memory index built from board state, then O(1) lookups for latest/by-id access).
+## Continuous improvement
+
+See `AI-SELF-IMPROVEMENT.md` for iteration and persona quality tuning.
