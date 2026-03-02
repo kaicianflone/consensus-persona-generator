@@ -71,7 +71,7 @@ export async function handler(input, opts = {}) {
       }
     };
   } catch (e) {
-    return err(board_id || '', 'PERSONA_GENERATOR_FAILED', e.message || 'unknown error', { statePath });
+    return err(board_id || '', 'PERSONA_GENERATOR_FAILED', e.message || 'unknown error');
   }
 }
 
