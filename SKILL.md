@@ -1,7 +1,7 @@
 ---
 name: consensus-persona-generator
 description: Generate and persist reusable persona panels (persona_set artifacts) for consensus decision workflows. This skill initializes evaluator diversity for downstream guards; ongoing reputation updates are owned by consensus-persona-engine.
-version: 1.1.13
+version: 1.1.14
 homepage: https://github.com/kaicianflone/consensus-persona-generator
 source: https://github.com/kaicianflone/consensus-persona-generator
 upstream:
