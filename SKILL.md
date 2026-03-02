@@ -1,10 +1,30 @@
 ---
 name: consensus-persona-generator
 description: Generate and persist reusable persona panels (persona_set artifacts) for consensus decision workflows. This skill initializes evaluator diversity for downstream guards; ongoing reputation updates are owned by consensus-persona-engine.
+version: 1.1.13
 homepage: https://github.com/kaicianflone/consensus-persona-generator
 source: https://github.com/kaicianflone/consensus-persona-generator
 upstream:
   consensus-guard-core: https://github.com/kaicianflone/consensus-guard-core
+requires:
+  bins:
+    - node
+    - tsx
+  env:
+    - CONSENSUS_STATE_FILE
+    - CONSENSUS_STATE_ROOT
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - node
+        - tsx
+      env:
+        - CONSENSUS_STATE_FILE
+        - CONSENSUS_STATE_ROOT
+    install:
+      - kind: node
+        package: consensus-persona-generator
 ---
 
 # consensus-persona-generator
@@ -55,7 +75,7 @@ Stack position:
 
 ## Dependency trust model
 
-- `consensus-guard-core` and `consensus-persona-generator` are first-party consensus packages
+- `consensus-guard-core` is the first-party consensus runtime dependency for this package
 - versions are semver-pinned in `package.json` for reproducible installs
 - this skill does not request host-wide privileges and does not mutate other skills
 
